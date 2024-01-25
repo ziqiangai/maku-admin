@@ -1,52 +1,41 @@
 <template>
 	<el-dialog v-model="visible" :title="!dataForm.id ? '新增' : '修改'" :close-on-click-modal="false" draggable>
 		<el-form ref="dataFormRef" :model="dataForm" :rules="dataRules" label-width="120px" @keyup.enter="submitHandle()">
-			<el-row>
+			<el-row :gutter="24">
+				<el-col :span="24">
+					<el-form-item prop="itemName" label="采购物品名称">
+						<el-input v-model="dataForm.itemName" placeholder="采购物品名称"></el-input>
+					</el-form-item>
+				</el-col>
 				<el-col :span="12">
-					<el-form-item prop="username" label="用户名">
-						<el-input v-model="dataForm.username" placeholder="用户名"></el-input>
+					<el-form-item prop="quantity" label="数量">
+						<el-input v-model="dataForm.quantity" placeholder="数量"></el-input>
 					</el-form-item>
-					<el-form-item prop="orgId" label="所属机构">
-						<el-tree-select
-							v-model="dataForm.orgId"
-							:data="orgList"
-							value-key="id"
-							check-strictly
-							:render-after-expand="false"
-							:props="{ label: 'name', children: 'children' }"
-							style="width: 100%"
-						/>
+					<el-form-item prop="unitPrice" label="单价">
+						<el-input v-model="dataForm.unitPrice" placeholder="单价"></el-input>
 					</el-form-item>
-					<el-form-item prop="mobile" label="手机号">
-						<el-input v-model="dataForm.mobile" placeholder="手机号"></el-input>
-					</el-form-item>
-					<el-form-item prop="password" label="密码">
-						<el-input v-model="dataForm.password" type="password" placeholder="密码"></el-input>
-					</el-form-item>
-					<el-form-item prop="postIdList" label="所属岗位">
-						<el-select v-model="dataForm.postIdList" multiple placeholder="所属岗位" style="width: 100%">
-							<el-option v-for="post in postList" :key="post.id" :label="post.postName" :value="post.id"></el-option>
-						</el-select>
+					<el-form-item prop="totalPrice" label="总价">
+						<el-input v-model="dataForm.totalPrice" placeholder="总价"></el-input>
 					</el-form-item>
 				</el-col>
 
 				<el-col :span="12">
-					<el-form-item prop="realName" label="姓名">
-						<el-input v-model="dataForm.realName" placeholder="姓名"></el-input>
+					<el-form-item prop="manufacturer" label="厂家">
+						<el-input v-model="dataForm.manufacturer" placeholder="厂家"></el-input>
 					</el-form-item>
-					<el-form-item prop="gender" label="性别">
-						<fast-radio-group v-model="dataForm.gender" dict-type="user_gender"></fast-radio-group>
-					</el-form-item>
-					<el-form-item prop="email" label="邮箱">
-						<el-input v-model="dataForm.email" placeholder="邮箱"></el-input>
-					</el-form-item>
-					<el-form-item prop="roleIdList" label="所属角色">
-						<el-select v-model="dataForm.roleIdList" multiple placeholder="所属角色" style="width: 100%">
-							<el-option v-for="role in roleList" :key="role.id" :label="role.name" :value="role.id"></el-option>
+					<el-form-item prop="status" label="类目">
+						<el-select v-model="dataForm.category" placeholder="类目">
+							<el-option v-for="status in categories" :key="status.value" :label="status.label" :value="status.value"></el-option>
 						</el-select>
 					</el-form-item>
-					<el-form-item prop="status" label="状态">
-						<fast-radio-group v-model="dataForm.status" dict-type="user_status"></fast-radio-group>
+					<el-form-item prop="note" label="备注">
+						<el-input v-model="dataForm.note" placeholder="备注"></el-input>
+					</el-form-item>
+				</el-col>
+
+				<el-col :span="24">
+					<el-form-item prop="purchaseReason" label="采购理由">
+						<el-input v-model="dataForm.purchaseReason" type="textarea" :rows="4" placeholder="采购理由"></el-input>
 					</el-form-item>
 				</el-col>
 			</el-row>
@@ -61,32 +50,51 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus/es'
-import { useOrgListApi } from '@/api/sys/orgs'
-import { useUserApi, useUserSubmitApi } from '@/api/sys/user'
-import { usePostListApi } from '@/api/sys/post'
-import { useRoleListApi } from '@/api/sys/role'
+import { useAssApi } from '@/api/sys/user'
+import { useAssSubmitApi } from '@/api/sys/ass'
 
 const emit = defineEmits(['refreshDataList'])
 
 const visible = ref(false)
-const postList = ref<any[]>([])
-const roleList = ref<any[]>([])
-const orgList = ref([])
+const categories = ref([
+	{
+		value: '教具',
+		label: '教具'
+	},
+	{
+		value: '图书',
+		label: '图书'
+	},
+	{
+		value: '实验用品',
+		label: '实验用品'
+	},
+	{
+		value: '教材',
+		label: '教材'
+	}
+])
 const dataFormRef = ref()
 
 const dataForm = reactive({
 	id: '',
-	username: '',
-	realName: '',
-	orgId: '',
-	orgName: '',
-	password: '',
-	gender: 0,
-	email: '',
-	mobile: '',
-	roleIdList: [] as any[],
-	postIdList: [] as any[],
-	status: 1
+	version: 0,
+	deleted: 0,
+	creator: 0,
+	create_time: '',
+	updater: 0,
+	update_time: '',
+	itemName: '',
+	quantity: 0,
+	unitPrice: 0,
+	totalPrice: 0,
+	note: '',
+	manufacturer: '',
+	purchaseReason: '',
+	category: '',
+	status: '',
+	approvalStatus: '',
+	approvalComment: ''
 })
 
 const init = (id?: number) => {
@@ -100,47 +108,23 @@ const init = (id?: number) => {
 
 	// id 存在则为修改
 	if (id) {
-		getUser(id)
+		getAss(id)
 	}
-
-	getOrgList()
-	getPostList()
-	getRoleList()
-}
-
-// 获取岗位列表
-const getPostList = () => {
-	return usePostListApi().then(res => {
-		postList.value = res.data
-	})
-}
-
-// 获取角色列表
-const getRoleList = () => {
-	return useRoleListApi().then(res => {
-		roleList.value = res.data
-	})
-}
-
-// 获取机构列表
-const getOrgList = () => {
-	return useOrgListApi().then(res => {
-		orgList.value = res.data
-	})
 }
 
 // 获取信息
-const getUser = (id: number) => {
-	useUserApi(id).then(res => {
+const getAss = (id: number) => {
+	useAssApi(id).then(res => {
 		Object.assign(dataForm, res.data)
 	})
 }
 
 const dataRules = ref({
-	username: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
-	realName: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
-	mobile: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
-	orgId: [{ required: true, message: '必填项不能为空', trigger: 'blur' }]
+	itemName: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
+	quantity: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
+	unitPrice: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
+	purchaseReason: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
+	totalPrice: [{ required: true, message: '必填项不能为空', trigger: 'blur' }]
 })
 
 // 表单提交
@@ -150,7 +134,7 @@ const submitHandle = () => {
 			return false
 		}
 
-		useUserSubmitApi(dataForm).then(() => {
+		useAssSubmitApi(dataForm).then(() => {
 			ElMessage.success({
 				message: '操作成功',
 				duration: 500,

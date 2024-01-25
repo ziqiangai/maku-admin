@@ -12,6 +12,10 @@ export const useUserApi = (id: number) => {
 	return service.get('/sys/user/' + id)
 }
 
+export const useAssApi = (id: number) => {
+	return service.get('/ass/check/' + id)
+}
+
 export const useUserSubmitApi = (dataForm: any) => {
 	if (dataForm.id) {
 		return service.put('/sys/user', dataForm)

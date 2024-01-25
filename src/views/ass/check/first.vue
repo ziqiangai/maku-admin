@@ -14,18 +14,7 @@
 				<el-button @click="getDataList()">查询</el-button>
 			</el-form-item>
 			<el-form-item>
-				<el-button v-auth="'sys:user:save'" type="primary" @click="addOrUpdateHandle()">新增</el-button>
-			</el-form-item>
-			<el-form-item>
-				<el-button v-auth="'sys:user:delete'" type="danger" @click="deleteBatchHandle()">删除</el-button>
-			</el-form-item>
-			<el-form-item v-auth="'sys:user:import'">
-				<el-upload :action="uploadUserExcelUrl" :before-upload="beforeUpload" :on-success="handleSuccess" :show-file-list="false">
-					<el-button type="info">导入</el-button>
-				</el-upload>
-			</el-form-item>
-			<el-form-item>
-				<el-button v-auth="'sys:user:export'" type="success" @click="downloadExcel()">导出</el-button>
+				<el-button type="primary" @click="addOrUpdateHandle()">新增</el-button>
 			</el-form-item>
 		</el-form>
 		<el-table
@@ -45,7 +34,11 @@
 			<el-table-column prop="manufacturer" label="厂家" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="purchaseReason" label="采购理由" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="category" label="类目" header-align="center" align="center"></el-table-column>
-			<el-table-column prop="status" label="采购状态" header-align="center" align="center"></el-table-column>
+			<el-table-column prop="status" label="状态" header-align="center" align="center">
+				<template #default="scope">
+					{{ mapStatus(scope.row.status) }}
+				</template>
+			</el-table-column>
 			<el-table-column prop="approvalStatus" label="审批状态" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="approvalComment" label="审批备注" header-align="center" align="center"></el-table-column>
 			<el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
@@ -81,7 +74,7 @@ import cache from '@/utils/cache'
 import constant from '@/utils/constant'
 
 const state: IHooksOptions = reactive({
-	dataListUrl: '/sys/user/page',
+	dataListUrl: '/ass/check/page',
 	deleteUrl: '/sys/user',
 	queryForm: {
 		username: '',
@@ -93,13 +86,6 @@ const state: IHooksOptions = reactive({
 const addOrUpdateRef = ref()
 const addOrUpdateHandle = (id?: number) => {
 	addOrUpdateRef.value.init(id)
-}
-
-// 导入用户excel文件
-const uploadUserExcelUrl = constant.apiUrl + '/sys/user/import?access_token=' + cache.getToken()
-
-const downloadExcel = () => {
-	downloadHandle('/sys/user/export')
 }
 
 const handleSuccess: UploadProps['onSuccess'] = (res, file) => {
@@ -125,5 +111,5 @@ const beforeUpload: UploadProps['beforeUpload'] = file => {
 	return true
 }
 
-const { getDataList, selectionChangeHandle, sizeChangeHandle, currentChangeHandle, deleteBatchHandle, downloadHandle } = useCrud(state)
+const { getDataList, selectionChangeHandle, mapStatus, sizeChangeHandle, currentChangeHandle, deleteBatchHandle, downloadHandle } = useCrud(state)
 </script>

@@ -46,7 +46,11 @@ first.vue
 			<el-table-column prop="manufacturer" label="厂家" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="purchaseReason" label="采购理由" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="category" label="类目" header-align="center" align="center"></el-table-column>
-			<el-table-column prop="status" label="采购状态" header-align="center" align="center"></el-table-column>
+			<el-table-column prop="status" label="状态" header-align="center" align="center">
+				<template #default="scope">
+					{{ mapStatus(scope.row.status) }}
+				</template>
+			</el-table-column>
 			<el-table-column prop="approvalStatus" label="审批状态" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="approvalComment" label="审批备注" header-align="center" align="center"></el-table-column>
 			<el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
@@ -126,5 +130,5 @@ const beforeUpload: UploadProps['beforeUpload'] = file => {
 	return true
 }
 
-const { getDataList, selectionChangeHandle, sizeChangeHandle, currentChangeHandle, deleteBatchHandle, downloadHandle } = useCrud(state)
+const { getDataList, mapStatus, selectionChangeHandle, sizeChangeHandle, currentChangeHandle, deleteBatchHandle, downloadHandle } = useCrud(state)
 </script>

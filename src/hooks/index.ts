@@ -197,7 +197,22 @@ export const useCrud = (options: IHooksOptions) => {
 		}
 	}
 
+	const mapStatus = (status: string) => {
+		const statusMap: { [key: string]: string } = {
+			'0': '待处理',
+			'1': '待审批',
+			'2': '已审批',
+			'3': '拒绝',
+			'4': '进行中',
+			'5': '已完成',
+			'6': '取消',
+			'7': '异常'
+		}
+		return statusMap[status] || '未知状态'
+	}
+
 	return {
+		mapStatus,
 		getDataList,
 		sizeChangeHandle,
 		currentChangeHandle,
