@@ -1,95 +1,107 @@
 <template>
 	<el-card class="layout-home">
-		<h2>介绍</h2>
-		<p>基于Vue3、TypeScript、Element Plus、Vue Router、Pinia、Axios、i18n、Vite等开发的后台管理</p>
-		<p>使用门槛极低，采用MIT开源协议，完全免费开源且终身免费，可免费用于商业项目等场景</p>
-		<p>目前已实现maku-admin后端接口的有：【MakuBoot】和【MakuCloud】2个后端开源项目。</p>
-		<p>
-			演示环境：<el-link href="https://demo.maku.net/maku-admin" :underline="false" type="primary" target="_blank">
-				https://demo.maku.net/maku-admin</el-link
-			>
-		</p>
-		<p>
-			开发文档：<el-link href="https://maku.net/docs/maku-admin" :underline="false" type="primary" target="_blank">
-				https://maku.net/docs/maku-admin</el-link
-			>
-		</p>
-		<p>
-			Gitee仓库：<el-link href="https://gitee.com/makunet/maku-admin" :underline="false" type="primary" target="_blank">
-				https://gitee.com/makunet/maku-admin</el-link
-			>
-		</p>
-		<p>
-			Github仓库：<el-link href="https://github.com/makunet/maku-admin" :underline="false" type="primary" target="_blank">
-				https://github.com/makunet/maku-admin</el-link
-			>
-		</p>
-		<br />
+		<h1>山东省沂源县实验小学简介</h1>
 
-		<h2>MakuBoot</h2>
+		<p>山东省沂源县实验小学，始建于1945年，1978年定为首批省重点小学，1994年成为省级规范化学校。“齐鲁小教一枝花”---沂源县实验小学简介</p>
+
+		<!-- 添加更多内容... -->
+
+		<h2>办学历史</h2>
+		<p>山东省沂源县实验小学，始建于1945年，原名南麻完小，1978年定为首批省重点小学，1985年改为现名，1994年成为省级规范化学校。</p>
+
+		<!-- 添加更多内容... -->
+
+		<h2>办学条件</h2>
+		<p>学校现占地面积60余亩，46个教学班，2300名学生，137名教职工，一处附属幼儿园，教学设施先进，师资力量雄厚。1962年曾参加过全国文教群英会。</p>
+
+		<!-- 添加更多内容... -->
+
+		<h2>办学成果</h2>
 		<p>
-			Gitee仓库：<el-link href="https://gitee.com/makunet/maku-boot" :underline="false" type="primary" target="_blank">
-				https://gitee.com/makunet/maku-boot</el-link
-			>
+			近些年，学校全面贯彻教育方针，全面实施素质教育，努力探索“五育并举，全面发展”的办学路子，形成了“团结、求实、尊师、守纪”的良好校风，先后荣获县窗口学校、市师德建设先进集体、市级文明单位、省素质教育示范学校、省教育科学研究重点实验基地、省特级档案室、省级教学示范校、省绿色学校、省级规范化学校、“全国红旗大队”、全国推行《国家体育锻炼标准施行办法》先进单位、全国和谐校园建设典型学校等集体综合荣誉称号268项
+			。
 		</p>
 		<p>
-			Github仓库：<el-link href="https://github.com/makunet/maku-boot" :underline="false" type="primary" target="_blank">
-				https://github.com/makunet/maku-boot</el-link
-			>
+			学校坚持德育为首，狠抓养成教育，建立起了学校、家庭、社会相结合的德育网络，学生素质不断提高。学校每年都组织四年级全体同学开展“爱家乡”社会实践活动。学生通过唱家乡歌曲，看家乡新貌，赏家乡风景，写家乡特产，听家乡传说，慰家乡名人等主题活动的开展，不但展示了鲜明的地方特色，又使全面育人的思想得以真正落实。学生有600余人受县级以上表彰。
+		</p>
+		<p>
+			学校坚持以教学为中心，以科研为先导，先后开展了十几项教改实验，其中“作文教学过程规范化实验”获山东省一等奖、全国教育实验研究优秀成果奖，在海峡两岸语文课程教材教法学术研讨会上交流。2007年8月《信息技术支持下的小学语文提前读写实验》全国现场研讨会在我县召开，这是我县小学承办的唯一的一次全国级会议。中央电化教育馆副馆长王晓芜、上海师大王荣生教授等出席了研讨会。2007年12月《小学数学问题式教学与合作交流性学习》实验课题荣获山东省优秀教学成果一等奖。全省获此成绩的仅有10家，淄博市独此1家。
+		</p>
+		<p>
+			学校重视体育、卫生工作，坚持普及与提高相结合的原则，不断提高学生的身体素质。学生在市（地）以上体育比赛中有150余人次获奖。学校多次获省、
+			市（地）体育达标先进单位称号。
+		</p>
+		<p>
+			艺术教育是学校的办学特色之一，我校本着“以艺术教育为突破口，全面带动素质教育”的指导思想，深化艺术教育改革。开全市艺术教育先河，积极开展周三、周四下午艺术实践活动，学生的艺术素质明显提高。每年都有近100
+			人次在市（地）以上发表作品或在比赛中获奖。两名学生的绘画作品在日本举办的国际青少年书画大赛中获奖。
+		</p>
+		<p>
+			学校紧跟时代步伐，积极运用现代教育技术，全面推进素质教育。学校拥有多媒体教室一个；语音教室一个；每一个教学班装备多媒体讲台和一台大屏幕彩电；开通闭路电视；建起了校园计算机局域网并连入国际互连网，建成现代教育技术装备中心一座。“四机一幕”进了课堂，微机室、语音室、电子课件室齐全。初步实现了办公、管理现代化。
+		</p>
+		<p>
+			反映学校的专题片《知识的摇篮》《欢乐的校园》《留住美丽》《山妞》分别在中央、省、市电视台播出。《山东教育》《现代教育报》《大众日报》等多家新闻媒体也对学校的办学经验进行了宣传报道。原国家基础教育司副司长、督学王文湛来我校视察后，欣然题词：“齐鲁小教一枝花”。
+		</p>
+		<!-- 添加更多内容... -->
+
+		<h2>文化传统</h2>
+		<p>
+			<strong>校训：</strong><br />
+			文明 活泼 勤奋 创新<br />
+			文明：举止文明 尊敬师长 平等合作 遵守公德<br />
+			活泼：生动活泼 充满自信 全面发展 张显个性<br />
+			勤奋：争分夺秒 努力学习 专心致志 精益求精<br />
+			创新：解放思想 实事求是 与时俱进 开拓创新
 		</p>
 
-		<p>
-			演示环境：<el-link href="https://demo.maku.net/maku-boot" :underline="false" type="primary" target="_blank">
-				https://demo.maku.net/maku-boot</el-link
-			>
-		</p>
-		<p>
-			开发文档：<el-link href="https://maku.net/docs/maku-boot" :underline="false" type="primary" target="_blank">
-				https://maku.net/docs/maku-boot</el-link
-			>
-		</p>
-		<br />
+		<!-- 添加更多内容... -->
 
-		<h2>MakuCloud</h2>
+		<h2>校风</h2>
 		<p>
-			Gitee仓库：<el-link href="https://gitee.com/makunet/maku-cloud" :underline="false" type="primary" target="_blank">
-				https://gitee.com/makunet/maku-cloud</el-link
-			>
+			团结 求实 尊师 守纪<br />
+			团结：树团结之风，树立团结合作的良好风气。<br />
+			求实：走求实之路，形成求真务实的良好风气。<br />
+			尊师：扬尊师之情，弘扬尊敬师长的优良传统。<br />
+			守纪：遵守纪之道，养成遵纪守法的良好习惯。
 		</p>
-		<p>
-			Github仓库：<el-link href="https://github.com/makunet/maku-cloud" :underline="false" type="primary" target="_blank">
-				https://github.com/makunet/maku-cloud</el-link
-			>
-		</p>
-		<p>
-			演示环境：<el-link href="https://demo.maku.net/maku-cloud" :underline="false" type="primary" target="_blank">
-				https://demo.maku.net/maku-cloud</el-link
-			>
-		</p>
-		<p>
-			开发文档：<el-link href="https://maku.net/docs/maku-cloud" :underline="false" type="primary" target="_blank">
-				https://maku.net/docs/maku-cloud</el-link
-			>
-		</p>
-		<br />
 
-		<h2>知识星球</h2>
-		<p>如果希望与作者，进行技术交流、解答、探讨等，可以加入我们的知识星球，作者在知识星球等你啊！</p>
-		<el-image src="https://cdn.maku.net/images/zsxq.jpg" style="width: 300px" />
-		<br />
+		<!-- 添加更多内容... -->
 
-		<h2>微信交流群</h2>
-		<p>为了更好的交流，我们新提供了微信交流群，需扫描下面的二维码，关注公众号，回复【加群】，根据提示信息，作者会拉你进群的，感谢配合！</p>
-		<el-image src="https://maku.net/app/img/qrcode.jpg" />
-		<br />
-
-		<h2>支持</h2>
+		<h2>教风</h2>
 		<p>
-			如果觉得框架还不错，或者已经在使用了，希望你可以去
-			<el-link href="https://github.com/makunet" :underline="false" type="primary" target="_blank">Github</el-link> 或
-			<el-link href="https://gitee.com/makunet" :underline="false" type="primary" target="_blank">Gitee</el-link>
-			帮作者点个 ⭐ Star，这将是对作者极大的鼓励与支持。
+			严 精 活 实<br />
+			严：遵守规范，以身立教；治学严谨，工作细致。<br />
+			精：理念先进，特色鲜明；锐意进取，精益求精。<br />
+			活：兴趣广泛，勤奋好学；增强实践，活动炼人。<br />
+			实：基础过硬，作风扎实；立足根本，实事求是。
 		</p>
+
+		<!-- 添加更多内容... -->
+
+		<h2>学风</h2>
+		<p>
+			勤思 好学 刻苦 认真<br />
+			勤思：质疑问难，善于思考；勇于探索，乐观主动。<br />
+			好学：诚实谦虚，学有所问；健康活泼，热爱学习。<br />
+			刻苦：刻苦钻研，学有所得；开拓创新，立志成才。<br />
+			认真：启迪智慧，好学上进；树立理想，积极进取。
+		</p>
+
+		<!-- 添加更多内容... -->
+
+		<h2>学生誓言</h2>
+		<p>
+			我是实验小学的学生，面向国旗，我宣誓：<br />
+			我自尊，团结同学，尊敬师长：<br />
+			我自爱，热爱生命，孝敬父母；<br />
+			我自立，掌握本领，建设祖国；<br />
+			我自强，面向世界，创造未来。<br />
+			我坚信：我最棒，我能行。
+		</p>
+
+		<!-- 添加更多内容... -->
+
+		<h2>校魂</h2>
+		<p>雷锋精神</p>
 	</el-card>
 </template>
 
