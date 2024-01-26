@@ -33,14 +33,7 @@
 					{{ mapStatus(scope.row.status) }}
 				</template>
 			</el-table-column>
-			<el-table-column prop="approvalStatus" label="审批状态" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="approvalComment" label="审批备注" header-align="center" align="center"></el-table-column>
-			<el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
-				<template #default="scope">
-					<el-button type="primary" link @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-					<el-button type="primary" link @click="deleteBatchHandle(scope.row.id)">删除</el-button>
-				</template>
-			</el-table-column>
 		</el-table>
 
 		<el-pagination
@@ -73,6 +66,7 @@ const state: IHooksOptions = reactive({
 	deleteUrl: '/sys/user',
 	queryForm: {
 		name: '',
+		status: ['5'],
 		reason: ''
 	}
 })

@@ -3,30 +3,13 @@ first.vue
 	<el-card>
 		<el-form :inline="true" :model="state.queryForm" @keyup.enter="getDataList()">
 			<el-form-item>
-				<el-input v-model="state.queryForm.username" placeholder="用户名" clearable></el-input>
+				<el-input v-model="state.queryForm.name" placeholder="名称" clearable></el-input>
 			</el-form-item>
 			<el-form-item>
-				<el-input v-model="state.queryForm.mobile" placeholder="手机号" clearable></el-input>
-			</el-form-item>
-			<el-form-item>
-				<fast-select v-model="state.queryForm.gender" dict-type="user_gender" clearable placeholder="性别"></fast-select>
+				<el-input v-model="state.queryForm.reason" placeholder="理由" clearable></el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button @click="getDataList()">查询</el-button>
-			</el-form-item>
-			<el-form-item>
-				<el-button v-auth="'sys:user:save'" type="primary" @click="addOrUpdateHandle()">新增</el-button>
-			</el-form-item>
-			<el-form-item>
-				<el-button v-auth="'sys:user:delete'" type="danger" @click="deleteBatchHandle()">删除</el-button>
-			</el-form-item>
-			<el-form-item v-auth="'sys:user:import'">
-				<el-upload :action="uploadUserExcelUrl" :before-upload="beforeUpload" :on-success="handleSuccess" :show-file-list="false">
-					<el-button type="info">导入</el-button>
-				</el-upload>
-			</el-form-item>
-			<el-form-item>
-				<el-button v-auth="'sys:user:export'" type="success" @click="downloadExcel()">导出</el-button>
 			</el-form-item>
 		</el-form>
 		<el-table
@@ -51,12 +34,15 @@ first.vue
 					{{ mapStatus(scope.row.status) }}
 				</template>
 			</el-table-column>
-			<el-table-column prop="approvalStatus" label="审批状态" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="approvalComment" label="审批备注" header-align="center" align="center"></el-table-column>
 			<el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
 				<template #default="scope">
-					<el-button type="primary" link @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-					<el-button type="primary" link @click="deleteBatchHandle(scope.row.id)">删除</el-button>
+					<el-button v-if="scope.row.status == '1'" type="danger" link @click="disAggree(scope.row.id)">拒绝</el-button>
+					<el-button v-if="scope.row.status == '1'" type="primary" link @click="aggree(scope.row.id)">同意</el-button>
+					<el-button v-if="scope.row.status == '4' && scope.row.approvalStatus" type="primary" link @click="aggreeLast(scope.row.id)">同意</el-button>
+					<el-button v-if="scope.row.status == '4'" type="primary" link @click="showAttach(scope.row.approvalStatus, scope.row.id)"
+						>查看材料</el-button
+					>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -73,6 +59,8 @@ first.vue
 
 		<!-- 弹窗, 新增 / 修改 -->
 		<add-or-update ref="addOrUpdateRef" @refresh-data-list="getDataList"></add-or-update>
+		<!-- 弹窗, 新增 / 修改 -->
+		<attachment ref="attachment" @refresh-data-list="getDataList"></attachment>
 	</el-card>
 </template>
 
@@ -85,19 +73,44 @@ import { ElMessage, UploadProps } from 'element-plus'
 import cache from '@/utils/cache'
 import constant from '@/utils/constant'
 
+import { updateStatus } from '@/api/sys/ass'
+import Attachment from '@/views/ass/check/attachment.vue'
+
 const state: IHooksOptions = reactive({
-	dataListUrl: '/sys/user/page',
+	dataListUrl: '/ass/check/page',
 	deleteUrl: '/sys/user',
 	queryForm: {
-		username: '',
-		mobile: '',
-		gender: ''
+		name: '',
+		reason: '',
+		status: ['1', '4']
 	}
 })
 
 const addOrUpdateRef = ref()
+
+const attachment = ref()
+const showAttach = (url: string, id?: number) => {
+	console.log('zzq sss', id)
+	attachment.value.init(false, url, id)
+}
+
 const addOrUpdateHandle = (id?: number) => {
 	addOrUpdateRef.value.init(id)
+}
+
+const aggree = async (id: string) => {
+	await updateStatus(id, '4')
+	getDataList()
+}
+
+const aggreeLast = async (id: string) => {
+	await updateStatus(id, '5')
+	getDataList()
+}
+
+const disAggree = async (id: string) => {
+	await updateStatus(id, '3')
+	getDataList()
 }
 
 // 导入用户excel文件

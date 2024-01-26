@@ -15,10 +15,12 @@ export default {
 	updateTime: 'Update Time',
 	required: 'Required items cannot be empty',
 	app: {
-		title: 'Maku Admin',
+		title: '实验小学资产管理系统',
 		description:
-			'The backstage management template developed based on Vue3, TypeScript, Element Plus, Vue Router, Pinia, Axios, i18n、Vite, etc., has a very low threshold for use, adopts the MIT open source protocol, is completely free and open source, and can be used for commercial projects and other scenarios for free! ',
-		logoText: 'Maku Admin',
+			'我们精心打造了一套创新的资产管理系统，融合了最先进的技术应用，旨在为在校教职工提供轻松高效的管理体验。\n' +
+			'\n' +
+			'这一系统的独特之处在于其全面性和智能化，能够帮助学校教师轻松管理各类资产，从而提高整体工作效率。我们采用了最新的技术手段，为学校打造了一个便捷、直观且高度安全的平台。',
+		logoText: '实验小学资产管理系统',
 		miniLogoText: 'MAKU',
 		username: 'Username',
 		password: 'Password',

@@ -15,10 +15,12 @@ export default {
 	updateTime: '更新时间',
 	required: '必填项不能为空',
 	app: {
-		title: 'Maku Admin',
+		title: '实验小学资产管理系统',
 		description:
-			'基于Vue3、TypeScript、Element Plus、Vue Router、Pinia、Axios、i18n、Vite等开发的后台管理，使用门槛极低，采用MIT开源协议，完全免费开源且终生免费，可免费用于商业项目等场景！',
-		logoText: 'Maku Admin',
+			'我们精心打造了一套创新的资产管理系统，融合了最先进的技术应用，旨在为在校教职工提供轻松高效的管理体验。\n' +
+			'\n' +
+			'这一系统的独特之处在于其全面性和智能化，能够帮助学校教师轻松管理各类资产，从而提高整体工作效率。我们采用了最新的技术手段，为学校打造了一个便捷、直观且高度安全的平台。',
+		logoText: '实验小学资产管理系统',
 		miniLogoText: 'MAKU',
 		username: '用户名',
 		password: '密码',

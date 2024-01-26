@@ -2,13 +2,10 @@
 	<el-card>
 		<el-form :inline="true" :model="state.queryForm" @keyup.enter="getDataList()">
 			<el-form-item>
-				<el-input v-model="state.queryForm.username" placeholder="用户名" clearable></el-input>
+				<el-input v-model="state.queryForm.name" placeholder="名称" clearable></el-input>
 			</el-form-item>
 			<el-form-item>
-				<el-input v-model="state.queryForm.mobile" placeholder="手机号" clearable></el-input>
-			</el-form-item>
-			<el-form-item>
-				<fast-select v-model="state.queryForm.gender" dict-type="user_gender" clearable placeholder="性别"></fast-select>
+				<el-input v-model="state.queryForm.reason" placeholder="理由" clearable></el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button @click="getDataList()">查询</el-button>
@@ -39,12 +36,10 @@
 					{{ mapStatus(scope.row.status) }}
 				</template>
 			</el-table-column>
-			<el-table-column prop="approvalStatus" label="审批状态" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="approvalComment" label="审批备注" header-align="center" align="center"></el-table-column>
 			<el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
 				<template #default="scope">
 					<el-button type="primary" link @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-					<el-button type="primary" link @click="deleteBatchHandle(scope.row.id)">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -77,9 +72,9 @@ const state: IHooksOptions = reactive({
 	dataListUrl: '/ass/check/page',
 	deleteUrl: '/sys/user',
 	queryForm: {
-		username: '',
-		mobile: '',
-		gender: ''
+    name: '',
+    reason: '',
+    status: ['1', '3']
 	}
 })
 

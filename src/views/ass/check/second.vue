@@ -3,19 +3,13 @@ first.vue
 	<el-card>
 		<el-form :inline="true" :model="state.queryForm" @keyup.enter="getDataList()">
 			<el-form-item>
-				<el-input v-model="state.queryForm.username" placeholder="用户名" clearable></el-input>
+				<el-input v-model="state.queryForm.name" placeholder="名称" clearable></el-input>
 			</el-form-item>
 			<el-form-item>
-				<el-input v-model="state.queryForm.mobile" placeholder="手机号" clearable></el-input>
-			</el-form-item>
-			<el-form-item>
-				<fast-select v-model="state.queryForm.gender" dict-type="user_gender" clearable placeholder="性别"></fast-select>
+				<el-input v-model="state.queryForm.reason" placeholder="理由" clearable></el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button @click="getDataList()">查询</el-button>
-			</el-form-item>
-			<el-form-item>
-				<el-button v-auth="'sys:user:save'" type="primary" @click="addOrUpdateHandle()">新增</el-button>
 			</el-form-item>
 		</el-form>
 
@@ -41,12 +35,13 @@ first.vue
 					{{ mapStatus(scope.row.status) }}
 				</template>
 			</el-table-column>
-			<el-table-column prop="approvalStatus" label="审批状态" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="approvalComment" label="审批备注" header-align="center" align="center"></el-table-column>
 			<el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
 				<template #default="scope">
-					<el-button type="primary" link @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-					<el-button type="primary" link @click="deleteBatchHandle(scope.row.id)">删除</el-button>
+					<el-button v-if="scope.row.approvalStatus" type="primary" link @click="addOrUpdateHandle(scope.row.approvalStatus)">查看材料</el-button>
+					<el-button v-if="!scope.row.approvalStatus" type="primary" link @click="addOrUpdateHandle(scope.row.approvalStatus, scope.row.id)"
+						>上传材料</el-button
+					>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -62,7 +57,7 @@ first.vue
 		</el-pagination>
 
 		<!-- 弹窗, 新增 / 修改 -->
-		<add-or-update ref="addOrUpdateRef" @refresh-data-list="getDataList"></add-or-update>
+		<attachment ref="attachment" @refresh-data-list="getDataList"></attachment>
 	</el-card>
 </template>
 
@@ -74,20 +69,22 @@ import { IHooksOptions } from '@/hooks/interface'
 import { ElMessage, UploadProps } from 'element-plus'
 import cache from '@/utils/cache'
 import constant from '@/utils/constant'
+import Attachment from '@/views/ass/check/attachment.vue'
 
 const state: IHooksOptions = reactive({
 	dataListUrl: '/ass/check/page',
 	deleteUrl: '/sys/user',
 	queryForm: {
-		username: '',
-		mobile: '',
+		name: '',
+		reason: '',
+		status: ['4'],
 		gender: ''
 	}
 })
 
-const addOrUpdateRef = ref()
-const addOrUpdateHandle = (id?: number) => {
-	addOrUpdateRef.value.init(id)
+const attachment = ref()
+const addOrUpdateHandle = (url: string, id?: number) => {
+	attachment.value.init(true, url, id)
 }
 
 const handleSuccess: UploadProps['onSuccess'] = (res, file) => {
